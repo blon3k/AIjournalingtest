@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&family=Space+Mono&display=swap');
+
+:root {
+	/* Light theme (default) */
+	--primary: #f9f9f9;
+	--secondary: #f1f1f1;
+	--accent: #1a1a1a;
+	--text-primary: #1a1a1a;
+	--text-secondary: #555;
+	--background: white;
+	--input-bg: rgba(0, 0, 0, 0.02);
+	--input-border: rgba(0, 0, 0, 0.08);
+	--input-focus-border: rgba(0, 0, 0, 0.2);
+	--button-hover-bg: rgba(0, 0, 0, 0.04);
+	--toggle-bg: rgba(0, 0, 0, 0.05);
+	--dropdown-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	--tooltip-bg: rgba(0, 0, 0, 0.6);
+	--error-color: #e53935;
+	--warning-color: #ff9800;
+	--success-color: #4caf50;
+	--accent-light: rgba(26, 26, 26, 0.1);
+	--accent-bg: rgba(26, 26, 26, 0.05);
+	--accent-dark: rgba(26, 26, 26, 0.8);
+
+	/* Font variables */
+	--font-heading: 'Playfair Display', serif;
+	--font-body: 'Inter', sans-serif;
+	--font-alt: 'Poppins', sans-serif;
+	--font-mono: 'Space Mono', monospace;
+
+	/* Typography scale */
+	--text-xs: 0.75rem; /* 12px */
+	--text-sm: 0.875rem; /* 14px */
+	--text-base: 1rem; /* 16px */
+	--text-lg: 1.125rem; /* 18px */
+	--text-xl: 1.25rem; /* 20px */
+	--text-2xl: 1.5rem; /* 24px */
+	--text-3xl: 1.875rem; /* 30px */
+	--text-4xl: 2.25rem; /* 36px */
+
+	/* Line heights */
+	--leading-none: 1;
+	--leading-tight: 1.25;
+	--leading-snug: 1.375;
+	--leading-normal: 1.5;
+	--leading-relaxed: 1.625;
+	--leading-loose: 2;
+
+	/* Letter spacing */
+	--tracking-tighter: -0.05em;
+	--tracking-tight: -0.025em;
+	--tracking-normal: 0;
+	--tracking-wide: 0.025em;
+	--tracking-wider: 0.05em;
+
+	/* Font weights */
+	--font-light: 300;
+	--font-normal: 400;
+	--font-medium: 500;
+	--font-semibold: 600;
+
+	/* Animation speeds */
+	--transition-fast: 0.15s;
+	--transition-normal: 0.2s;
+	--transition-slow: 0.3s;
+}
+
+[data-theme='dark'] {
+	--primary: #121212;
+	--secondary: #1e1e1e;
+	--accent: #d97fff;
+	--text-primary: #f1f1f1;
+	--text-secondary: #aaa;
+	--background: #121212;
+	--input-bg: rgba(255, 255, 255, 0.05);
+	--input-border: rgba(255, 255, 255, 0.1);
+	--input-focus-border: rgba(255, 255, 255, 0.2);
+	--button-hover-bg: rgba(255, 255, 255, 0.08);
+	--toggle-bg: rgba(255, 255, 255, 0.12);
+	--dropdown-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	--tooltip-bg: rgba(255, 255, 255, 0.15);
+	--error-color: #ff5252;
+	--warning-color: #ffb74d;
+	--success-color: #69f0ae;
+	--accent-light: rgba(217, 127, 255, 0.2);
+	--accent-bg: rgba(217, 127, 255, 0.1);
+	--accent-dark: rgba(217, 127, 255, 0.8);
+}
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	font-weight: var(--font-normal);
+	line-height: var(--leading-normal);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--background);
+	color: var(--text-primary);
+	transition: background-color var(--transition-normal) ease, color var(--transition-normal) ease;
+}
+
+#root {
+	height: 100%;
+	width: 100%;
+}
+
+/* Typography system */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+	font-weight: var(--font-medium);
+	letter-spacing: var(--tracking-tight);
+	line-height: var(--leading-tight);
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	font-size: var(--text-4xl);
+	letter-spacing: -0.015em;
+}
+
+h2 {
+	font-size: var(--text-3xl);
+	letter-spacing: -0.01em;
+}
+
+h3 {
+	font-size: var(--text-2xl);
+	letter-spacing: -0.005em;
+}
+
+h4 {
+	font-size: var(--text-xl);
+}
+
+h5 {
+	font-size: var(--text-lg);
+}
+
+h6 {
+	font-size: var(--text-base);
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 1em;
+	line-height: var(--leading-relaxed);
+}
+
+.text-xs {
+	font-size: var(--text-xs);
+}
+
+.text-sm {
+	font-size: var(--text-sm);
+}
+
+.text-base {
+	font-size: var(--text-base);
+}
+
+.text-lg {
+	font-size: var(--text-lg);
+}
+
+.text-xl {
+	font-size: var(--text-xl);
+}
+
+.text-2xl {
+	font-size: var(--text-2xl);
+}
+
+.font-light {
+	font-weight: var(--font-light);
+}
+
+.font-normal {
+	font-weight: var(--font-normal);
+}
+
+.font-medium {
+	font-weight: var(--font-medium);
+}
+
+.font-semibold {
+	font-weight: var(--font-semibold);
+}
+
+.text-alt {
+	font-family: var(--font-alt);
+}
+
+.number {
+	font-family: var(--font-mono);
+	font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+.leading-tight {
+	line-height: var(--leading-tight);
+}
+
+.leading-normal {
+	line-height: var(--leading-normal);
+}
+
+.leading-relaxed {
+	line-height: var(--leading-relaxed);
+}
+
+.tracking-tight {
+	letter-spacing: var(--tracking-tight);
+}
+
+.tracking-normal {
+	letter-spacing: var(--tracking-normal);
+}
+
+.tracking-wide {
+	letter-spacing: var(--tracking-wide);
+}
+
+/* Accessibility focus styles */
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+	button,
+	.button,
+	.checkbox,
+	.toggle-switch,
+	.model-option {
+		min-height: 44px;
+		min-width: 44px;
+	}
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+	:root {
+		--text-4xl: 2rem; /* 32px */
+		--text-3xl: 1.75rem; /* 28px */
+		--text-2xl: 1.375rem; /* 22px */
+	}
+}
+
+/* Animations */
+@keyframes shimmer {
+	0% {
+		background-position: -200px 0;
+	}
+	100% {
+		background-position: 200px 0;
+	}
+}

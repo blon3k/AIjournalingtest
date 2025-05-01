@@ -1,0 +1,56 @@
+.toggle-container {
+	position: relative;
+	display: inline-block;
+}
+
+.toggle-checkbox {
+	height: 0;
+	width: 0;
+	opacity: 0;
+	position: absolute;
+}
+
+.toggle-label {
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	height: 24px;
+	width: 48px;
+	background-color: var(--toggle-bg, #ccc);
+	border-radius: 20px;
+	position: relative;
+	transition: background-color 0.2s ease;
+}
+
+.toggle-button {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background-color: var(--toggle-button-bg, #fff);
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	transition: 0.2s;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-checkbox:checked + .toggle-label {
+	background-color: var(--toggle-active-bg, #4caf50);
+}
+
+.toggle-checkbox:checked + .toggle-label .toggle-button {
+	left: calc(100% - 22px);
+}
+
+.toggle-label:active .toggle-button {
+	width: 26px;
+}
+
+.toggle.disabled {
+	opacity: 0.6;
+}
+
+.toggle.disabled .toggle-label {
+	cursor: not-allowed;
+}

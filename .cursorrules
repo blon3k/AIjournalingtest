@@ -1,0 +1,10 @@
+Folow best modern ui pracitses, clean modern subtle
+
+60/30/10 rule for colors, no transitions, animations, gradients, box shadows, just simple modern ui!
+
+Focus on usability, scalability, and user experience, crate user friendly ui
+
+also use super spesific classnames to avoid conflicts!
+
+
+intsall backend depedicess in root of project, and start server from root, it will be saier later in the deploymetn ,so do that please
