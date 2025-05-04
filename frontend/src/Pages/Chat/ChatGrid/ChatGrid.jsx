@@ -20,10 +20,10 @@ import {
 	Send,
 } from 'lucide-react'
 import './ChatGrid.css'
-import Loader from '../Loader'
-import chatService from '../../services/chatService'
-import { useAuth } from '../../context/AuthContext'
-import formatMessageContent from '../../utils/formatMessageContent'
+import Loader from '../../../components/Loader'
+import chatService from '../../../services/chatService'
+import { useAuth } from '../../../context/AuthContext'
+import formatMessageContent from '../../../utils/formatMessageContent'
 
 const AgentBox = ({ title, icon, status, content, position, isFullscreen, onToggleFullscreen, isSummarizer }) => {
 	const statusColors = {

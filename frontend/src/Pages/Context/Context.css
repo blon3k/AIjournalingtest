@@ -1,0 +1,50 @@
+/* Import Settings.css styles since we're using them */
+@import '../Settings/Settings.css';
+
+/* Projects & Business specific styles */
+.remove-project-button {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--button-hover-bg);
+	border: 1px solid var(--input-border);
+	border-radius: 6px;
+	color: var(--error-color);
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+.remove-project-button:hover {
+	background-color: rgba(244, 67, 54, 0.08);
+}
+
+/* Project item styles override */
+.project-item {
+	border: 1px solid var(--input-border);
+	border-radius: 8px;
+	overflow: hidden;
+	transition: all 0.2s ease;
+	margin-bottom: 16px;
+}
+
+.project-item:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.project-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px;
+	background-color: var(--background-alt);
+	border-bottom: 1px solid var(--input-border);
+}
+
+/* Additional styling for active section */
+.settings-section.active-section {
+	border-left: 2px solid var(--accent);
+	padding-left: 16px;
+	margin-left: -18px;
+}

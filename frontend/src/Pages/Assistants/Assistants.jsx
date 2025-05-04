@@ -17,11 +17,11 @@ import {
 	Upload,
 	AlertCircle,
 } from 'lucide-react'
-import Modal from './modal/Modal'
+import Modal from '../../components/modal/Modal'
 import ColorThief from 'colorthief'
 import { useNavigate } from 'react-router-dom'
-import userService from '../services/userService'
-import authService from '../services/authService'
+import userService from '../../services/userService'
+import authService from '../../services/authService'
 
 const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 	const [assistants, setAssistants] = useState([])
@@ -87,6 +87,13 @@ const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 			try {
 				const assistantsData = await userService.getUserAssistants(currentUser._id)
 				setAssistants(assistantsData)
+
+				// Initialize image loading states for all assistants
+				const initialLoadingState = {}
+				assistantsData.forEach(assistant => {
+					initialLoadingState[assistant._id] = assistant.avatarImage ? true : false
+				})
+				setImageLoading(initialLoadingState)
 			} catch (err) {
 				console.error('Failed to fetch assistants:', err)
 				setError('Failed to load assistants. Please try again later.')
@@ -254,6 +261,18 @@ const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 			// Update assistants state with the updated assistant
 			setAssistants(prev => prev.map(a => (a._id === currentAssistant._id ? updatedAssistant : a)))
 
+			// Reset image loading state for the updated assistant if it has an avatar
+			if (updatedAssistant.avatarImage) {
+				setImageLoading(prev => ({
+					...prev,
+					[updatedAssistant._id]: true,
+				}))
+				setImageError(prev => ({
+					...prev,
+					[updatedAssistant._id]: false,
+				}))
+			}
+
 			closeEditModal()
 		} catch (err) {
 			console.error('Failed to update assistant:', err)
@@ -284,6 +303,15 @@ const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 
 			// Add new assistant to state
 			setAssistants(prev => [...prev, newAssistant])
+
+			// Initialize image loading state for the new assistant if it has an avatar
+			if (newAssistant.avatarImage) {
+				setImageLoading(prev => ({
+					...prev,
+					[newAssistant._id]: true,
+				}))
+			}
+
 			closeCreateModal()
 		} catch (err) {
 			console.error('Failed to create assistant:', err)
@@ -434,18 +462,9 @@ const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 
 	// Render the assistant with appropriate placeholders
 	const renderAssistantImage = assistant => {
-		const isLoading = imageLoading[assistant._id]
-		const hasError = imageError[assistant._id]
-
-		if (isLoading) {
-			return (
-				<div className="assistant-avatar-loading">
-					<div className="loading-spinner"></div>
-				</div>
-			)
-		}
-
-		if (hasError || !assistant.avatarImage) {
+		// Don't use the loading states for now as they're causing issues
+		// Just check if the avatar image exists
+		if (!assistant.avatarImage) {
 			return (
 				<div className="assistant-avatar-placeholder">
 					<User size={24} strokeWidth={1.5} />
@@ -454,16 +473,16 @@ const Assistants = ({ sidebarFilter, updateSidebarFilter }) => {
 		}
 
 		return (
-			<>
-				<img
-					ref={el => (imgRefs.current[assistant._id] = el)}
-					crossOrigin="anonymous"
-					src={assistant.avatarImage}
-					alt={assistant.name}
-					onLoad={() => handleImageLoad(assistant._id)}
-					onError={() => handleImageError(assistant._id)}
-				/>
-			</>
+			<img
+				src={assistant.avatarImage}
+				alt={assistant.name}
+				onError={() => {
+					// If image fails to load, set error in state and show fallback
+					console.error(`Failed to load image for assistant: ${assistant.name}`)
+					// Update the assistant in state directly to remove the invalid avatar URL
+					setAssistants(prev => prev.map(a => (a._id === assistant._id ? { ...a, avatarImage: '' } : a)))
+				}}
+			/>
 		)
 	}
 

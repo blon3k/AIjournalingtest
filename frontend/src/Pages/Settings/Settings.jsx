@@ -18,10 +18,10 @@ import {
 	Check,
 	AlertTriangle,
 } from 'lucide-react'
-import Modal from './modal/Modal'
-import uploadService from '../services/uploadService'
-import userService from '../services/userService'
-import { useAuth } from '../context/AuthContext'
+import Modal from '../../components/modal/Modal'
+import uploadService from '../../services/uploadService'
+import userService from '../../services/userService'
+import { useAuth } from '../../context/AuthContext'
 
 // Custom SVG icons for models
 const GeminiIcon = ({ size = 14 }) => (

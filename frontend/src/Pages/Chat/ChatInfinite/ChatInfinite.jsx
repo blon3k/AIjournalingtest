@@ -29,12 +29,12 @@ import {
 	RefreshCw,
 } from 'lucide-react'
 import './ChatInfinite.css'
-import Loader from '../Loader'
-import chatService from '../../services/chatService'
-import userService from '../../services/userService'
-import authService from '../../services/authService'
-import { useAuth } from '../../context/AuthContext'
-import formatMessageContent from '../../utils/formatMessageContent'
+import Loader from '../../../components/Loader'
+import chatService from '../../../services/chatService'
+import userService from '../../../services/userService'
+import authService from '../../../services/authService'
+import { useAuth } from '../../../context/AuthContext'
+import formatMessageContent from '../../../utils/formatMessageContent'
 
 const AgentBox = ({ agent, status, content, isFullscreen, onToggleFullscreen }) => {
 	const statusColors = {

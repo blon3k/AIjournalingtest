@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Mail, Lock, User, Eye, EyeOff, AlertCircle } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
-import './Login.css'
+import { useAuth } from '../../../context/AuthContext'
+import '../Login/Login.css'
 
 function Signup() {
 	const [name, setName] = useState('')

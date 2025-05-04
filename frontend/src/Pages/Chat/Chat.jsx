@@ -42,7 +42,7 @@ import { useNavigate } from 'react-router-dom'
 import chatService from '../../services/chatService'
 import userService from '../../services/userService'
 import authService from '../../services/authService'
-import Loader from '../Loader'
+import Loader from '../../components/Loader'
 
 // Custom SVG icons for models
 const GeminiIcon = ({ size = 14 }) => (
@@ -757,7 +757,12 @@ function Chat({ onMessageSubmit, onChatModeChange, chatMode }) {
 	}, [input, isSending, isModelLoading, isTranscribing, isAtLimit])
 
 	return (
-		<div className="chat-container">
+		<div className={`chat-container mode-${selectedMode}`}>
+			<div className="blob blob-1"></div>
+			<div className="blob blob-2"></div>
+			<div className="blob blob-3"></div>
+			<div className="blob blob-4"></div>
+
 			<div className="chat-main">
 				<div className={`chat-placeholder mode-${selectedMode}`}>
 					<p className="chat-placeholder-text">

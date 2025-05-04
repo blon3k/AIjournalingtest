@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #f5f5f5;
+            transition: background-color 0.3s;
+        }
+
+        body[data-theme="dark"] {
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body[data-theme="dark"] .container {
+            background: #1e1e1e;
+        }
+
+        button {
+            padding: 8px 16px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .current-status {
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Theme Test Tool</h1>
+
+        <div class="current-status">
+            Current theme: <span id="currentTheme">loading...</span><br>
+            localStorage theme: <span id="storedTheme">loading...</span><br>
+            data-theme attribute: <span id="dataAttribute">loading...</span>
+        </div>
+
+        <button id="toggleTheme">Toggle Theme</button>
+        <button id="setLight">Set Light</button>
+        <button id="setDark">Set Dark</button>
+        <button id="clearStorage">Clear localStorage</button>
+
+        <div class="log">
+            <h3>Debug Log:</h3>
+            <pre id="logOutput"></pre>
+        </div>
+    </div>
+
+    <script>
+        // Function to update UI with current status
+        function updateStatus() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'none';
+            const storedTheme = localStorage.getItem('theme') || 'none';
+
+            document.getElementById('currentTheme').textContent = currentTheme;
+            document.getElementById('storedTheme').textContent = storedTheme;
+            document.getElementById('dataAttribute').textContent = document.documentElement.getAttribute('data-theme') || 'none';
+
+            log(`Status updated - HTML theme: ${currentTheme}, localStorage: ${storedTheme}`);
+        }
+
+        // Function to log messages
+        function log(message) {
+            const logOutput = document.getElementById('logOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            logOutput.textContent = `[${timestamp}] ${message}\n` + logOutput.textContent;
+        }
+
+        // Toggle theme
+        document.getElementById('toggleTheme').addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            log(`Theme toggled from ${currentTheme} to ${newTheme}`);
+            updateStatus();
+        });
+
+        // Set light theme
+        document.getElementById('setLight').addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            log('Theme explicitly set to light');
+            updateStatus();
+        });
+
+        // Set dark theme
+        document.getElementById('setDark').addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            log('Theme explicitly set to dark');
+            updateStatus();
+        });
+
+        // Clear localStorage
+        document.getElementById('clearStorage').addEventListener('click', () => {
+            localStorage.removeItem('theme');
+            log('localStorage theme setting cleared');
+            updateStatus();
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            log('Page loaded, checking initial theme state');
+
+            // Check localStorage first
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                log(`Applied theme from localStorage: ${savedTheme}`);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                log('No theme in localStorage, applied dark theme from system preference');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                log('No theme in localStorage or system preference, defaulted to light theme');
+            }
+
+            updateStatus();
+        });
+    </script>
+</body>
+
+</html>

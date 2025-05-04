@@ -134,7 +134,7 @@
 }
 
 .chat-item:hover {
-	background-color: var(--button-hover-bg);
+	background-color: var(--secondary);
 }
 
 .chat-item:hover::after {
@@ -144,13 +144,13 @@
 	right: 0;
 	width: 100px;
 	height: 100%;
-	background: linear-gradient(to left, var(--background), transparent);
+	background: linear-gradient(to left, var(--background) 70%, transparent);
 	pointer-events: none;
 	z-index: 1;
 }
 
 [data-theme='dark'] .chat-item:hover::after {
-	background: linear-gradient(to left, var(--background), transparent);
+	background: linear-gradient(to left, var(--background) 70%, transparent);
 }
 
 .chat-item.active {
@@ -159,11 +159,11 @@
 }
 
 .chat-item.active::after {
-	background: linear-gradient(to left, var(--accent-bg) 40%, transparent);
+	background: linear-gradient(to left, var(--accent-bg) 70%, transparent);
 }
 
 [data-theme='dark'] .chat-item.active::after {
-	background: linear-gradient(to left, rgba(79, 70, 229, 0.15) 40%, transparent);
+	background: linear-gradient(to left, rgba(79, 70, 229, 0.15) 70%, transparent);
 }
 
 .chat-icon {
@@ -215,8 +215,8 @@
 	align-items: center;
 	gap: 6px;
 	opacity: 0;
-	transition: all 0.2s ease;
-	transform: translateY(-50%) translateX(10px);
+	transition: all 0.1s;
+	transform: translateY(-50%) translateX(40px);
 	z-index: 2;
 }
 

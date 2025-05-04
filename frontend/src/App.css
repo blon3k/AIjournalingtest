@@ -76,7 +76,6 @@ body {
 	transition: margin-left 0.3s ease;
 	display: flex;
 	flex-direction: column;
-	padding: 20px;
 }
 
 /* Adjust main content when secondary sidebar is open */

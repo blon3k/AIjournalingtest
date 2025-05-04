@@ -17,6 +17,23 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300&display=swap"
     rel="stylesheet">
   <title>CzutkaAI | Narzędzie do AI Journalingu!</title>
+  <!-- Preload theme script - runs before any rendering -->
+  <script>
+    (function () {
+      // Set theme immediately to avoid flashing
+      function setInitialTheme() {
+        var savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+          // Always default to dark theme
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      setInitialTheme();
+    })();
+  </script>
 </head>
 
 <body>

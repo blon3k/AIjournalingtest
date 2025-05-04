@@ -339,9 +339,7 @@ const SecondarySidebar = ({ activeView, isOpen, setActiveView, onApplyFilter, re
 			const diffHours = Math.floor(diffTime / (1000 * 60 * 60))
 			if (diffHours === 0) {
 				const diffMinutes = Math.floor(diffTime / (1000 * 60))
-				if (diffMinutes === 0) {
-					return 'Przed chwilą'
-				}
+
 				return `${diffMinutes}m temu`
 			}
 			return `${diffHours}h temu`

@@ -1,24 +1,24 @@
 import './App.css'
 import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import Chat from './components/chat/Chat'
-import ChatDetail from './components/chat/ChatDetail'
-import ChatGrid from './components/chat/ChatGrid'
-import ChatInfinite from './components/chat/ChatInfinite'
+import Chat from './Pages/Chat/Chat'
+import ChatDetail from './Pages/Chat/ChatDetails/ChatDetail'
+import ChatGrid from './Pages/Chat/ChatGrid/ChatGrid'
+import ChatInfinite from './Pages/Chat/ChatInfinite/ChatInfinite'
 import Sidebar from './components/Sidebar'
 import SecondarySidebar from './components/SecondarySidebar'
-import Settings from './components/Settings'
-import Profile from './components/Profile'
-import Context from './components/Context'
-import Assistants from './components/Assistants'
-import SystemPrompts from './components/SystemPrompts'
-import Community from './components/Community'
-import Login from './components/Login'
-import Signup from './components/Signup'
+import Settings from './Pages/Settings/Settings'
+import Profile from './Pages/Profile/Profile'
+import Context from './Pages/Context/Context'
+import Assistants from './Pages/Assistants/Assistants'
+import SystemPrompts from './Pages/SystemPrompts/SystemPrompts'
+import Community from './Pages/Community/Community'
+import Login from './Pages/Auth/Login/Login'
+import Signup from './Pages/Auth/Register/Signup'
 import { AlertTriangle, Menu, X } from 'lucide-react'
 import { SettingsProvider } from './context/SettingsContext'
 import { AuthProvider, useAuth } from './context/AuthContext'
-import Files from './components/Files'
+import Files from './Pages/Files/Files'
 import chatService from './services/chatService'
 
 // Main App wrapper with Router and Providers
@@ -54,7 +54,10 @@ const ProtectedRoute = ({ children }) => {
 
 // Main App content
 function AppContent() {
-	const [theme, setTheme] = useState('light')
+	const [theme, setTheme] = useState(() => {
+		// Get the current document theme (set by the preload script)
+		return document.documentElement.getAttribute('data-theme') || 'dark'
+	})
 	const [sidebarOpen, setSidebarOpen] = useState(true) // Default is open
 	const [sidebarExpanded, setSidebarExpanded] = useState(true) // Default expanded with text
 	const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(true) // Control secondary sidebar
@@ -120,15 +123,13 @@ function AppContent() {
 
 	const userInitials = getInitials(userName)
 
-	// Initialize theme from localStorage or system preference
+	// Initialize theme state based on the current document theme attribute
 	useEffect(() => {
-		const savedTheme = localStorage.getItem('theme')
-		if (savedTheme) {
-			setTheme(savedTheme)
-			document.documentElement.setAttribute('data-theme', savedTheme)
-		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			setTheme('dark')
-			document.documentElement.setAttribute('data-theme', 'dark')
+		// No need to set the theme attribute here as it's already set
+		// Just make sure our state is in sync with it
+		const currentDocTheme = document.documentElement.getAttribute('data-theme')
+		if (currentDocTheme && currentDocTheme !== theme) {
+			setTheme(currentDocTheme)
 		}
 
 		// Get sidebar expanded state from localStorage
@@ -310,8 +311,11 @@ function AppContent() {
 
 	const toggleTheme = () => {
 		const newTheme = theme === 'light' ? 'dark' : 'light'
+		// Update state
 		setTheme(newTheme)
+		// Update DOM
 		document.documentElement.setAttribute('data-theme', newTheme)
+		// Save to localStorage
 		localStorage.setItem('theme', newTheme)
 	}
 

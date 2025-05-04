@@ -19,9 +19,9 @@ import {
 	PlusCircle,
 	List,
 } from 'lucide-react'
-import SharePostModal from './modal/SharePostModal'
-import postService from '../services/postService'
-import { useAuth } from '../context/AuthContext'
+import SharePostModal from '../../components/modal/SharePostModal'
+import postService from '../../services/postService'
+import { useAuth } from '../../context/AuthContext'
 
 const Community = ({ sidebarFilter, updateSidebarFilter }) => {
 	const [posts, setPosts] = useState([])
@@ -331,10 +331,6 @@ const Community = ({ sidebarFilter, updateSidebarFilter }) => {
 						<span>Utwórz Post</span>
 					</button>
 				</div>
-				<button className="filter-more-button">
-					<Filter size={16} />
-					<span>Więcej filtrów</span>
-				</button>
 			</div>
 
 			{isLoading ? (

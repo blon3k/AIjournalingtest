@@ -15,9 +15,9 @@ import {
 	Sun,
 	Moon,
 } from 'lucide-react'
-import uploadService from '../services/uploadService'
-import userService from '../services/userService'
-import { useAuth } from '../context/AuthContext'
+import uploadService from '../../services/uploadService'
+import userService from '../../services/userService'
+import { useAuth } from '../../context/AuthContext'
 
 function Profile() {
 	const { user, updateUserData } = useAuth()

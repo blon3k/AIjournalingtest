@@ -4,7 +4,14 @@ import './Toggle.css'
 const Toggle = ({ isOn, handleToggle, id }) => {
 	return (
 		<div className="toggle-container">
-			<input checked={isOn} onChange={handleToggle} className="toggle-checkbox" id={id} type="checkbox" />
+			<input
+				checked={isOn}
+				onChange={handleToggle}
+				className="toggle-checkbox"
+				id={id}
+				type="checkbox"
+				key={`toggle-${id}-${isOn}`}
+			/>
 			<label className="toggle-label" htmlFor={id}>
 				<span className="toggle-button" />
 			</label>

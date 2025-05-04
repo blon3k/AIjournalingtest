@@ -5,7 +5,7 @@ const SettingsContext = createContext()
 
 // Initial settings
 const defaultSettings = {
-	theme: 'light',
+	theme: 'dark',
 	language: 'en',
 	desktopNotifications: false,
 	soundEffects: false,

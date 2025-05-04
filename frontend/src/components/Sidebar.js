@@ -197,7 +197,8 @@ const Sidebar = ({
 					onClick={toggleTheme}
 					aria-label={theme === 'dark' ? 'Przełącz na tryb jasny' : 'Przełącz na tryb ciemny'}
 					onMouseEnter={e => showTooltip('theme', e)}
-					onMouseLeave={hideTooltip}>
+					onMouseLeave={hideTooltip}
+					key={`theme-toggle-${theme}`}>
 					{theme === 'dark' ? <Sun size={18} strokeWidth={1.5} /> : <Moon size={18} strokeWidth={1.5} />}
 				</button>
 			</div>

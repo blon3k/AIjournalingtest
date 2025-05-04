@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './SystemPrompts.css'
 import { PlusCircle, Edit, Trash2, FileCode, Clock, Share2, Copy, X, Link, Star, AlertCircle } from 'lucide-react'
-import Modal from './modal/Modal'
+import Modal from '../../components/modal/Modal'
 import { useNavigate } from 'react-router-dom'
-import userService from '../services/userService'
-import authService from '../services/authService'
+import userService from '../../services/userService'
+import authService from '../../services/authService'
 
 const SystemPrompts = ({ sidebarFilter, updateSidebarFilter }) => {
 	const [prompts, setPrompts] = useState([])

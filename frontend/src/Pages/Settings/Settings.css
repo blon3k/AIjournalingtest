@@ -62,7 +62,7 @@
 
 .settings-textarea {
 	width: 100%;
-	min-height: 100px;
+	min-height: 200px;
 	padding: 16px;
 	border: 1px solid var(--input-border);
 	border-radius: 12px;
@@ -72,12 +72,12 @@
 	background-color: var(--input-bg);
 	color: var(--text-primary);
 	resize: vertical;
-	transition: border-color var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+	transition: border-color var(--transition-normal) ease;
+	padding-bottom: 20px;
 }
 
 .settings-textarea:focus {
 	border-color: var(--input-focus-border);
-	box-shadow: 0 0 0 1px var(--input-border);
 }
 
 /* Prompt textarea specific styling */
@@ -2042,24 +2042,6 @@ input:disabled + .toggle-slider {
 	background-color: var(--background);
 }
 
-.remove-project-button {
-	width: 32px;
-	height: 32px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: transparent;
-	border: 1px solid var(--input-border);
-	border-radius: 6px;
-	color: var(--error-color);
-	cursor: pointer;
-	transition: all 0.15s ease;
-}
-
-.remove-project-button:hover {
-	background-color: rgba(244, 67, 54, 0.08);
-}
-
 .project-details {
 	padding: 16px;
 }
@@ -2080,7 +2062,8 @@ input:disabled + .toggle-slider {
 	margin-bottom: 6px;
 }
 
-.project-field input {
+.project-field input,
+.project-field textarea {
 	width: 100%;
 	padding: 10px 12px;
 	border: 1px solid var(--input-border);
@@ -2091,13 +2074,6 @@ input:disabled + .toggle-slider {
 }
 
 .project-field textarea {
-	width: 100%;
-	padding: 10px 12px;
-	border: 1px solid var(--input-border);
-	border-radius: 6px;
-	background-color: var(--background);
-	color: var(--text-primary);
-	font-size: var(--text-sm);
 	min-height: 80px;
 	resize: vertical;
 }

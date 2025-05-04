@@ -20,10 +20,10 @@ import {
 	AlertCircle,
 } from 'lucide-react'
 import './ChatDetail.css'
-import Loader from '../Loader'
-import chatService from '../../services/chatService'
-import { useAuth } from '../../context/AuthContext'
-import formatMessageContent from '../../utils/formatMessageContent'
+import Loader from '../../../components/Loader'
+import chatService from '../../../services/chatService'
+import { useAuth } from '../../../context/AuthContext'
+import formatMessageContent from '../../../utils/formatMessageContent'
 
 // Import model icons directly from Chat.jsx
 const ClaudeIcon = ({ size = 14 }) => (

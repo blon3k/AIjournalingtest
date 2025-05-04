@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import './Settings.css' // Reuse styling from Settings
+import '../Settings/Settings.css' // Correctly reference Settings.css from the Settings folder
 import './Files.css' // Specific styles for Files component
 import {
 	File,
@@ -19,11 +19,11 @@ import {
 	Calendar,
 	AlertCircle,
 } from 'lucide-react'
-import Modal from './modal/Modal'
-import SecondarySidebar from './SecondarySidebar'
-import fileService from '../services/fileService' // Import the new service
-import userService from '../services/userService' // We might need user ID, let's import this too
-import { useAuth } from '../context/AuthContext' // Import useAuth to get user ID
+import Modal from '../../components/modal/Modal'
+import SecondarySidebar from '../../components/SecondarySidebar'
+import fileService from '../../services/fileService' // Import the new service
+import userService from '../../services/userService' // We might need user ID, let's import this too
+import { useAuth } from '../../context/AuthContext' // Import useAuth to get user ID
 
 // Allowed text file extensions
 const allowedExtensions = [
